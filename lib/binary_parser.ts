@@ -507,25 +507,25 @@ export class Parser {
     return this.setNextParser('choice', varName as string, options);
   }
 
-  nest(varName: string | ParserOptions, options: ParserOptions) {
+  nest(varName: string | ParserOptions, options: ParserOptions?) {
     if (typeof options !== 'object' && typeof varName === 'object') {
       options = varName;
       varName = null;
     }
 
-    if (!options.type) {
+    if (!options!.type) {
       throw new Error('Type option of nest is not defined.');
     }
-    if (!(options.type instanceof Parser) && !aliasRegistry[options.type]) {
+    if (!(options!.type instanceof Parser) && !aliasRegistry[options!.type]) {
       throw new Error('Type option of nest must be a Parser object.');
     }
-    if (!(options.type instanceof Parser) && !varName) {
+    if (!(options!.type instanceof Parser) && !varName) {
       throw new Error(
         'options.type must be a object if variable name is omitted.'
       );
     }
 
-    return this.setNextParser('nest', varName as string, options);
+    return this.setNextParser('nest', varName as string, options!);
   }
 
   pointer(varName: string, options?: ParserOptions) {
