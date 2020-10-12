@@ -507,7 +507,7 @@ export class Parser {
     return this.setNextParser('choice', varName as string, options);
   }
 
-  nest(varName: string | ParserOptions, options: ParserOptions?) {
+  nest(varName: string | ParserOptions, options?: ParserOptions) {
     if (typeof options !== 'object' && typeof varName === 'object') {
       options = varName;
       varName = null;
